@@ -9,19 +9,14 @@ ASCII Comparison: The comparison of letters to determine if a word is "ordered" 
 should be used directly for comparison (e.g., 'a' has a different ASCII value than 'A', and 'A' < 'a').
 
 
-import java.lang.*; // This import is often implicitly available or part of standard boilerplate
+import java.lang.*; 
 
 class UserMainCode {
     public int findOrderedWords(String input1) {
         String[] words = input1.split(" ");
         int orderedWordCount = 0;
         for (String word : words) {
-            // Skip empty strings that might result from multiple spaces if input validation allows (though problem says "single whitespace")
-            if (word.isEmpty()) {
-                continue;
-            }
           boolean isOrdered = true;
-            // A single-character word is always considered ordered
             if (word.length() > 1) {
                 for (int i = 0; i < word.length() - 1; i++) {
                     if (word.charAt(i) > word.charAt(i + 1)) {
