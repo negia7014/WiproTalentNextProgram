@@ -1,0 +1,54 @@
+Find Key:
+You are provided with 3 numbers: input1, input2, and input3.
+Each of these are four-digit numbers within the range >= 1000 and <= 9999.
+i.e.
+1000 <= input1 <= 9999
+1000 <= input2 <= 9999
+1000 <= input3 <= 9999
+You are expected to find the Key using the below formula:
+Key = (Sum of Largest digits of all the 3 numbers) - (Sum of Smallest digits of all the 3 numbers)
+For e.g. if input1 = 3521, input2 = 2452, input3 = 1352, then Key = (5 + 5 + 5) - (1 + 2 + 1) = 11.
+Assuming that the 3 numbers are passed to the given function, complete the function to find and return the Key.
+
+
+
+public class KeyFromDigits {
+    public static void main(String[] args) {
+        int num1 = 3521;
+        int num2 = 2452;
+        int num3 = 1352;
+
+        int largest1 = 0, smallest1 = 9;
+        int temp1 = num1;
+        while (temp1 > 0) {
+            int digit = temp1 % 10;
+            if (digit > largest1) largest1 = digit;
+            if (digit < smallest1) smallest1 = digit;
+            temp1 /= 10;
+        }
+
+        int largest2 = 0, smallest2 = 9;
+        int temp2 = num2;
+        while (temp2 > 0) {
+            int digit = temp2 % 10;
+            if (digit > largest2) largest2 = digit;
+            if (digit < smallest2) smallest2 = digit;
+            temp2 /= 10;
+        }
+
+        int largest3 = 0, smallest3 = 9;
+        int temp3 = num3;
+        while (temp3 > 0) {
+            int digit = temp3 % 10;
+            if (digit > largest3) largest3 = digit;
+            if (digit < smallest3) smallest3 = digit;
+            temp3 /= 10;
+        }
+
+        int sumLargest = largest1 + largest2 + largest3;
+        int sumSmallest = smallest1 + smallest2 + smallest3;
+        int key = sumLargest - sumSmallest;
+
+        System.out.println("Key = " + key);  // Output: Key = 11
+    }
+}
