@@ -1,0 +1,35 @@
+Q-  write a function findRepArray that takes an integer array (input1) and its size (input2) as input. The function should identify and return the first number
+that repeats when you traverse the array from the tail (last element) to the head (first element).
+Conditions-:
+The search for the first repeated number must start from the end of the array and move backward.
+The program should only consider positive numbers. You must ignore all non-positive numbers (zeroes and negative numbers).
+If the entire array is traversed and no repeated positive number is found, the function should return the last element of the array.
+If all elements in the array are non-positive, the function should return 0.
+
+public class UserMainCode {
+    public int findRepArray(int[] input1, int input2) {
+        // Special condition: if all elements are non-positive
+        boolean hasPositive = true;
+        for (int num : input1) {
+            if (num > 0) {
+                hasPositive = false;
+                break;
+            }
+        }
+        if (hasPositive) {
+            return 0;
+        }
+       HashSet<Integer> seenNumbers = new HashSet<Integer>();
+        for (int i = input2 - 1; i >= 0; i--) {
+            int currentNum = input1[i];
+            if (currentNum > 0) {
+                if (seenNumbers.contains(currentNum)) {
+                    return currentNum;
+                }
+                seenNumbers.add(currentNum);
+            }
+        }
+         // If no number is repeated 
+        return input1[input2 - 1]; 
+    }
+}
