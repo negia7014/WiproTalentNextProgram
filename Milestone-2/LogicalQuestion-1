@@ -1,0 +1,70 @@
+Q- Find PIN: You are a player in a "Maths game" and must find a secret PIN. You are given four integer inputs: input1, input2, input3, and input4. input1, input2, and input3 are
+four-digit numbers between 1000 and 9999, and input4 is a positive integer.
+The PIN is calculated based on input4:
+If input4 is even, the PIN is the sum of the even digits in input1, input2, and input3.
+If input4 is odd, the PIN is the sum of the odd digits in input1, input2, and input3.
+You are asked to complete a function to find and return this PIN.
+
+public class UserMainCode {
+     public int findPIN(int input1, int input2, int input3, int input4) {
+        if (input4 % 2 == 0) {
+            return fun1(input1, input2, input3);
+        } else {
+            return fun2(input1, input2, input3);
+        }
+    }
+  // Function to sum even digits
+    public int fun1(int num1, int num2, int num3) {
+        int sum = 0;
+        int rem;
+        while (num1 > 0) {
+            rem = num1 % 10;
+            if (rem % 2 == 0) {
+                sum += rem;
+            }
+            num1 /= 10;
+        }
+        while (num2 > 0) {
+            rem = num2 % 10;
+            if (rem % 2 == 0) {
+                sum += rem;
+            }
+            num2 /= 10;
+        }
+        while (num3 > 0) {
+            rem = num3 % 10;
+            if (rem % 2 == 0) {
+                sum += rem;
+            }
+            num3 /= 10;
+        }
+        return sum;
+    }
+//  Function to sum odd digits
+    public int fun2(int num1, int num2, int num3) {
+        int sum = 0;
+        int rem;
+        while (num1 > 0) {
+            rem = num1 % 10;
+            if (rem % 2 != 0) {
+                sum += rem;
+            }
+            num1 /= 10;
+        }
+        while (num2 > 0) {
+            rem = num2 % 10;
+            if (rem % 2 != 0) {
+                sum += rem;
+            }
+            num2 /= 10;
+        }
+        while (num3 > 0) {
+            rem = num3 % 10;
+            if (rem % 2 != 0) {
+                sum += rem;
+            }
+            num3 /= 10;
+        }
+        return sum;
+    }
+}
