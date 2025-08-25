@@ -1,0 +1,54 @@
+//You are asked to generate a User ID for a participant based on their First Name, Last Name, PIN number, and an integer N, following these rules:
+//Choose Smaller & Larger Name
+//If the lengths of first and last names are different → the shorter one is the smaller name, the longer one is the larger name.
+//If both names have the same length → pick the one that comes earlier alphabetically as the smaller name.
+User ID = First letter of smaller name 
+          + Entire larger name 
+          + Nth digit of PIN from left 
+          + Nth digit of PIN from right
+//Toggle Case
+//Convert all uppercase letters to lowercase.
+//Convert all lowercase letters to uppercase.
+//Return Final User ID.
+
+public class UserIdGenerator {
+
+    public static String userIdGeneration(String input1, String input2, int input3, int input4) {
+        // Convert PIN to string
+        String pin = String.valueOf(input3);
+        String smaller, larger;
+
+        if (input1.length() > input2.length()) {
+            smaller = input2;
+            larger = input1;
+        } else if (input2.length() > input1.length()) {
+            smaller = input1;
+            larger = input2;
+        } else { 
+            // If lengths are equal, compare alphabetically
+            if (input1.compareToIgnoreCase(input2) < 0) {
+                smaller = input1;
+                larger = input2;
+            } else {
+                smaller = input2;
+                larger = input1;
+            }
+        }
+        char leftno = pin.charAt(input4 - 1);                
+        char rightno = pin.charAt(pin.length() - input4);    // Nth digit from right
+
+        String userId = smaller.charAt(0) + larger + leftno + rightno;
+
+        StringBuilder toggleUserId = new StringBuilder();
+        for (char ch : userId.toCharArray()) {
+            if (Character.isUpperCase(ch)) {
+                toggleUserId.append(Character.toLowerCase(ch));
+            } else if (Character.isLowerCase(ch)) {
+                toggleUserId.append(Character.toUpperCase(ch));
+            } else {
+                toggleUserId.append(ch);
+            }
+        }
+
+        return toggleUserId.toString();
+    }
