@@ -1,0 +1,56 @@
+//You are given an integer input1. You need to return the number of prime digits present in it.
+//Prime digits are only: 2, 3, 5, 7.
+//If no prime digits exist, return 0.
+
+// 1st solution
+
+class UserMainCode {
+    public int countPrimeDigits(int input1) {
+        // Convert number to string
+        String input = String.valueOf(input1);
+        int count = 0;
+
+        // Convert to char array
+        char[] ch = input.toCharArray();
+
+        // ArrayList of prime digits
+        ArrayList<Character> primes = new ArrayList<>();
+        primes.add('2');
+        primes.add('3');
+        primes.add('5');
+        primes.add('7');
+
+        // Check each digit
+        for (char c : ch) {
+            if (primes.contains(c)) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+}
+// 2nd solution
+
+import java.io.*;
+import java.util.*;
+
+class UserMainCode {
+    public int countPrimeDigits(int input1) {
+        int count = 0;
+
+        // Loop through digits
+        while (input1 > 0) {
+            int digit = input1 % 10;   // last digit nikala
+            if (digit == 2 || digit == 3 || digit == 5 || digit == 7) {
+                count++;
+            }
+            input1 = input1 / 10;  // last digit hata diya
+        }
+
+        return count;
+    }
+}
+
+
+
